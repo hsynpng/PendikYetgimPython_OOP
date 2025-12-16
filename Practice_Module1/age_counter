@@ -1,1 +1,31 @@
+from datetime import datetime, date
 
+FORMATS = ("%Y-%m-%d", "%d/%m/%Y", "%d.%m.%Y")
+
+def get_birth_date():
+    while True:
+        value = input("Enter birth date: ").strip()
+        for f in FORMATS:
+            try:
+                return datetime.strptime(value, f).date()
+            except ValueError:
+                pass
+        print("Invalid date format.")
+
+def main():
+    print("Age Counter")
+    birth = get_birth_date()
+    today = date.today()
+
+    if birth > today:
+        print("Date cannot be in the future.")
+        return
+
+    days = (today - birth).days
+    years = round(days / 365.25, 2)
+
+    print(f"Days lived: {days}")
+    print(f"Approx years: {years}")
+
+if __name__ == "__main__":
+    main()
