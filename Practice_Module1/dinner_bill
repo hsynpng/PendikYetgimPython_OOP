@@ -1,1 +1,30 @@
+def get_float(text):
+    while True:
+        try:
+            return float(input(text).replace(",", "."))
+        except ValueError:
+            print("Invalid number.")
 
+def get_int(text):
+    while True:
+        try:
+            v = int(input(text))
+            if v > 0:
+                return v
+            raise ValueError
+        except ValueError:
+            print("Invalid value.")
+
+def main():
+    total = get_float("Total bill: ")
+    tip = get_float("Tip %: ")
+    people = get_int("People count: ")
+
+    total_with_tip = total * (1 + tip / 100)
+    per_person = total_with_tip / people
+
+    print(f"Total with tip: {total_with_tip:.2f}")
+    print(f"Per person: {per_person:.2f}")
+
+if __name__ == "__main__":
+    main()
