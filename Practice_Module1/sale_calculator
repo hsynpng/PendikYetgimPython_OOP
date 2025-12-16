@@ -1,1 +1,32 @@
+def get_price():
+    while True:
+        try:
+            v = float(input("Price: ").replace(",", "."))
+            if v < 0:
+                raise ValueError
+            return v
+        except ValueError:
+            print("Invalid price.")
 
+def get_discount():
+    while True:
+        try:
+            d = float(input("Discount %: ").replace(",", "."))
+            if 0 <= d <= 100:
+                return d
+            raise ValueError
+        except ValueError:
+            print("Invalid discount.")
+
+def main():
+    price = get_price()
+    discount = get_discount()
+
+    final_price = price * (1 - discount / 100)
+    saved = price - final_price
+
+    print(f"Final price: {final_price:.2f}")
+    print(f"Saved: {saved:.2f}")
+
+if __name__ == "__main__":
+    main()
