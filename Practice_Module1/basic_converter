@@ -1,1 +1,40 @@
+M_TO_FT = 3.28084
+KG_TO_LB = 2.20462
 
+def get_number(text):
+    while True:
+        try:
+            return float(input(text).replace(",", "."))
+        except ValueError:
+            print("Invalid number.")
+
+def menu():
+    print("\n1) Meter -> Feet")
+    print("2) Feet -> Meter")
+    print("3) Kg -> Pound")
+    print("4) Pound -> Kg")
+    print("0) Exit")
+    return input("Select: ").strip()
+
+def main():
+    while True:
+        choice = menu()
+        if choice == "0":
+            break
+        if choice == "1":
+            x = get_number("Meter: ")
+            print(x * M_TO_FT)
+        elif choice == "2":
+            x = get_number("Feet: ")
+            print(x / M_TO_FT)
+        elif choice == "3":
+            x = get_number("Kg: ")
+            print(x * KG_TO_LB)
+        elif choice == "4":
+            x = get_number("Pound: ")
+            print(x / KG_TO_LB)
+        else:
+            print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
